@@ -1,0 +1,25 @@
+{
+    "id": "meslo",
+    "name": "Meslo",
+    "license": "Apache License 2.0",
+    "license_url": "http://www.apache.org/licenses/LICENSE-2.0.html",
+    "installation": [
+        {
+            "url": "https://github.com/andreberg/Meslo-Font/raw/master/dist/v1.2.1/Meslo%20LG%20DZ%20v1.2.1.zip",
+            "files": [
+                "MesloLGMDZ-.*.ttf"
+            ]
+        },
+        {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "prefix": "Liga",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf"
+        ]
+    }
+}
