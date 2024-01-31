@@ -1,0 +1,25 @@
+{
+    "id": "roboto-mono",
+    "name": "RobotoMono",
+    "license": "Apache License 2.0",
+    "license_url": "http://www.apache.org/licenses/LICENSE-2.0.html",
+    "installation": [
+        {
+            "url": "https://api.github.com/repos/googlefonts/RobotoMono/contents/fonts/ttf?ref=main",
+            "files": [
+                ".*.ttf"
+            ]
+        },
+        {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "prefix": "Liga",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf"
+        ]
+    }
+}
