@@ -1,0 +1,26 @@
+---
+name: "Get Ligaturizer version"
+description: "Get Ligaturizer version"
+
+inputs: {}
+
+outputs:
+  ligaturizer-version:
+    description: "Ligaturizer version"
+  fontforge-version:
+    description: "FontForge version"
+
+runs:
+  using: "docker"
+  image: docker://ghcr.io/nhatthm/ligaturizer:latest
+  args:
+    - -c
+    - |
+      FONTFORGE_VERSION="$(python -c "import fontforge; print(fontforge.version())")"
+
+      echo "LIGATURIZER_VERSION=${LIGATURIZER_VERSION}" >> "$GITHUB_ENV"
+      echo "FONTFORGE_VERSION=${FONTFORGE_VERSION}" >> "$GITHUB_ENV"
+
+      echo "ligaturizer-version=${LIGATURIZER_VERSION}" >> "$GITHUB_OUTPUT"
+      echo "fontforge-version=${FONTFORGE_VERSION}" >> "$GITHUB_OUTPUT"
+  entrypoint: /bin/bash
