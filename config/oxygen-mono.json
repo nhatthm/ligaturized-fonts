@@ -1,0 +1,23 @@
+{
+    "id": "oxygen-mono",
+    "name": "Oxygen Mono",
+    "license": "OFL 1.1",
+    "license_url": "https://github.com/google/fonts/blob/main/ofl/oxygenmono/OFL.txt",
+    "installation": [
+        {
+            "url": "https://api.github.com/repos/google/fonts/contents/ofl/oxygenmono?ref=90abd17",
+            "files": [
+                ".*.ttf",
+                "OFL.txt"
+            ]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "name": "Liga O2 Mono",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf"
+        ]
+    }
+}
