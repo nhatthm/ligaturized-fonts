@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+
+if [[ -z "$GITHUB_TOKEN" ]]; then
+    echo "Missing GITHUB_TOKEN environment variable"
+    exit 1
+fi
+
+FONT_CONFIG_FILE=$1
+FONTS_DIR=$2
+
+if [[ -z "$FONT_CONFIG_FILE" ]]; then
+    echo "Mising font configuration file"
+    exit 1
+fi
+
+if [[ -z "$FONTS_DIR" ]]; then
+    echo "Mising fonts directory"
+    exit 1
+fi
+
+if [[ ! -f "${FONT_CONFIG_FILE}" ]]; then
+    echo "Font configuration file not found: ${FONT_CONFIG_FILE}"
+    exit 1
+fi
+
+FONT_ID=$(basename "${FONT_CONFIG_FILE}" .json)
+FONT_DIR="${FONTS_DIR}/${FONT_ID}"
+
+function install_github_api() {
+    local url;
+    local files;
+    local pattern;
+    local filesPattern;
+    local name;
+    local downloadUrl;
+
+    url=$(jq -r -M '.url' <<< "$1" | sed -E 's#^.*://api.github.com/(.*)#\1#g')
+    files="$(
+        gh api \
+            -H "Accept: application/vnd.github.v3+json" \
+            "${url}" \
+        | jq -r -c -M '.'
+    )"
+
+    if [[ -z "${files}" ]]; then
+        echo >&2 "Failed to fetch font files from: ${url}"
+        exit 1
+    fi
+
+    pattern=".*"
+
+    filesPattern=$(jq -r '.files // [] | .[]' <<< "${installation}" | tr '\n' '|' | sed 's/|$//')
+    if [[ -n "${filesPattern}" ]]; then
+        pattern="(${filesPattern})"
+    fi
+
+    while read -r file; do
+        name=$(jq -r -M '.name' <<< "${file}")
+        downloadUrl=$(jq -r -M '.download_url' <<< "${file}")
+
+        if [[ -z "${name}" ]] || [[ -z "${downloadUrl}" ]]; then
+            echo >&2 "Invalid font file: ${file}"
+            exit 1
+        fi
+
+        if ! grep -q -E "${pattern}" <<< "${name}"; then
+            echo "> Skip: ${name}"
+            continue
+        fi
+
+        if [[ "$name" == "license.txt" ]]; then
+            name="LICENSE.txt"
+        fi
+
+        echo "> Download: ${name}"
+        gh api -H "Accept: application/vnd.github.v3.raw" "${downloadUrl}" > "${FONT_DIR}/${name}"
+
+        if [[ ! -f "${FONT_DIR}/${name}" ]]; then
+            echo >&2 "Failed to download font file: ${name}"
+            exit 1
+        fi
+    done < <(echo "${files}" | jq -r -c -M '.[] // []')
+}
+
+function install_apache_license() {
+    local url;
+    local name;
+
+    url=$(jq -r -M '.url' <<< "$1")
+    name="LICENSE.txt"
+
+    curl -s -L -q "${url}" > "${FONT_DIR}/${name}"
+
+    echo "> Download: ${name}"
+
+    if [[ ! -f "${FONT_DIR}/${name}" ]]; then
+        echo >&2 "Failed to download file: ${name}"
+        exit 1
+    fi
+}
+
+if [[ -d "${FONT_DIR}" ]]; then
+    rm -rf "${FONT_DIR}"
+fi
+
+mkdir -p "${FONT_DIR}"
+
+if [[ ! -d "${FONT_DIR}" ]]; then
+    echo >&2 "Failed to create font directory: ${FONT_DIR}"
+    exit 1
+fi
+
+echo "Font Config: ${FONT_CONFIG_FILE}"
+echo "Font Directory: ${FONT_DIR}"
+
+while read -r installation; do
+    url=$(jq -r -M '.url' <<< "${installation}")
+
+    case "${url}" in
+        *api.github.com*)
+            install_github_api "${installation}"
+            ;;
+
+        *apache.org/licenses/LICENSE-2.0.txt)
+            install_apache_license "${installation}"
+            ;;
+
+        *)
+            echo >&2 "Unsupported font installation: ${url}"
+            exit 1
+            ;;
+    esac
+done < <(jq -r -c -M '.installation[] // []' "${FONT_CONFIG_FILE}")

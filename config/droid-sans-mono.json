@@ -1,0 +1,25 @@
+{
+    "id": "droid-sans-mono",
+    "name": "Droid Sans Mono",
+    "license": "Apache License 2.0",
+    "license_url": "http://www.apache.org/licenses/LICENSE-2.0.html",
+    "installation": [
+        {
+            "url": "https://api.github.com/repos/google/fonts/contents/apache/droidsansmono?ref=bfd28d0",
+            "files": [
+                ".*.ttf"
+            ]
+        },
+        {
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "prefix": "Liga",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf"
+        ]
+    }
+}
