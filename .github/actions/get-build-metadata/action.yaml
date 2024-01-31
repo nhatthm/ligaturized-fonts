@@ -1,0 +1,37 @@
+---
+name: "Get Build Metadata"
+description: "Get build metadata"
+
+inputs:
+  font:
+    description: "Font to get build metadata"
+    required: true
+  token:
+    description: "Authorized secret GitHub Personal Access Token. Defaults to github.token"
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  metadata-file:
+    description: "Build metadata in JSON format"
+    value: ${{ steps.get.outputs.metadata-file }}
+
+runs:
+  using: composite
+  steps:
+    - name: "Get build metadata"
+      id: get
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+        METADATA_REF: "gh-pages"
+        METADATA_FILE: "metadata/${{ inputs.font }}.json"
+      run: |
+        mkdir -p "$(dirname "$METADATA_FILE")"
+
+        gh api \
+          -H "Accept: application/vnd.github.raw" \
+          "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${METADATA_REF}/${METADATA_FILE}" | jq > "$METADATA_FILE" || true
+
+        echo "METADATA_FILE=${METADATA_FILE}" >> "$GITHUB_ENV"
+        echo "metadata-file=${METADATA_FILE}" >> "$GITHUB_OUTPUT"
