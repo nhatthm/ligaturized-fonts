@@ -1,0 +1,28 @@
+{
+    "id": "spacemono",
+    "name": "Space Mono",
+    "license": "OFL 1.1",
+    "license_url": "https://github.com/googlefonts/spacemono/blob/main/LICENSE.txt",
+    "installation": [
+        {
+            "url": "https://api.github.com/repos/googlefonts/spacemono/contents/fonts?ref=f5ebc1e",
+            "files": [
+                ".*.ttf"
+            ]
+        },
+        {
+            "url": "https://api.github.com/repos/googlefonts/spacemono/contents?ref=main",
+            "files": [
+                "LICENSE.txt"
+            ]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "prefix": "Liga",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf"
+        ]
+    }
+}

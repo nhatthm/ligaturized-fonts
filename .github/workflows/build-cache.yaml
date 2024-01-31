@@ -1,0 +1,37 @@
+---
+name: "Build Cache"
+
+concurrency: "build-cache"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      fonts: ${{ steps.find.outputs.fonts }}
+    steps:
+      - name: Checkout code
+        uses: nhatthm/gh-actions/checkout@master
+
+      - name: Find enabled fonts
+        id: find
+        uses: ./.github/actions/list-enabled-fonts
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        font: ${{fromJson(needs.setup.outputs.fonts)}}
+    needs: [setup]
+    steps:
+      - name: Checkout code
+        uses: nhatthm/gh-actions/checkout@master
+
+      - name: Install font
+        uses: ./.github/actions/install-font
+        with:
+          font: ${{ matrix.font }}
