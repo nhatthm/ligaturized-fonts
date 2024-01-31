@@ -1,0 +1,25 @@
+{
+    "id": "fantasque-sans-mono-noloopk",
+    "name": "Fantasque Sans Mono (NoLoopK)",
+    "license": "OFL 1.1",
+    "license_url": "https://github.com/belluzj/fantasque-sans/blob/master/LICENSE.txt",
+    "installation": [
+        {
+            "url": "https://github.com/belluzj/fantasque-sans/releases/download/v1.8.0/FantasqueSansMono-NoLoopK.zip",
+            "files": [
+                ".*.ttf",
+                ".*.otf",
+                "LICENSE.txt"
+            ]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "name": "Liga Fantasque Sans Mono NoLoopK",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf",
+            ".*.otf"
+        ]
+    }
+}
