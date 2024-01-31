@@ -1,0 +1,184 @@
+---
+name: "Build Fonts"
+
+concurrency: "build-fonts"
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      fonts:
+        description: "Fonts to build, comma separated. Leave it empty to build all fonts."
+        required: false
+        default: ""
+      rebuild:
+        description: "Force to rebuild the fonts"
+        required: false
+        type: boolean
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      fonts: ${{ steps.find.outputs.fonts }}
+      ligaturizer-version: ${{ steps.tools-version.outputs.ligaturizer-version }}
+      fontforge-version: ${{ steps.tools-version.outputs.fontforge-version }}
+    steps:
+      - name: Checkout code
+        uses: nhatthm/gh-actions/checkout@master
+
+      - name: Find enabled fonts
+        id: find
+        uses: ./.github/actions/list-enabled-fonts
+        with:
+          filter: ${{ github.event.inputs.fonts || '' }}
+
+      - name: Find Ligaturizer version
+        id: tools-version
+        uses: ./.github/actions/get-ligaturizer-version
+
+  ligaturize:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        font: ${{fromJson(needs.setup.outputs.fonts)}}
+    needs: [setup]
+    permissions:
+      contents: write
+      packages: write
+    env:
+      LIGATURIZER_VERSION: ${{ needs.setup.outputs.ligaturizer-version }}
+      FONTFORGE_VERSION: ${{ needs.setup.outputs.fontforge-version }}
+    steps:
+      - name: Checkout code
+        uses: nhatthm/gh-actions/checkout@master
+        with:
+          fetch-depth: 0
+          fetch-tags: 'true'
+
+      - name: Setup
+        run: |
+          make "$GITHUB_ENV"
+          make "$GITHUB_OUTPUT"
+
+      - name: Get build metadata
+        uses: ./.github/actions/get-build-metadata
+        with:
+          font: ${{ matrix.font }}
+
+      - name: Build check
+        run: |
+          BUILD_RAW_REF="$(sha1sum "${CONFIG_DIR}/${{ matrix.font }}.json" | sha1sum | cut -d ' ' -f 1)#${LIGATURIZER_VERSION}#${FONTFORGE_VERSION}"
+          BUILD_REF=$(echo -n "${BUILD_RAW_REF}" | sha1sum | cut -d ' ' -f 1)
+          METADATA_BUILD_REF=$(jq -r '.build_ref // ""' "${METADATA_FILE}" || true)
+          BUILD_FONT="false"
+
+          if [[ "${METADATA_BUILD_REF}" != "${BUILD_REF}" || "${{ inputs.rebuild }}" == "true" ]]; then
+            BUILD_FONT="true"
+          fi
+
+          (
+            echo "BUILD_RAW_REF=${BUILD_RAW_REF}"
+            echo "BUILD_REF=${BUILD_REF}"
+            echo "BUILD_FONT=${BUILD_FONT}"
+            echo "METADATA_BUILD_REF=${METADATA_BUILD_REF}"
+          )  >> "$GITHUB_ENV"
+
+      - name: Install font
+        if: ${{ env.BUILD_FONT == 'true' }}
+        uses: ./.github/actions/install-font
+        with:
+          font: ${{ matrix.font }}
+
+      - name: Ligaturize font
+        id: ligaturize
+        if: ${{ env.BUILD_FONT == 'true' }}
+        uses: ./.github/actions/ligaturize-font
+        with:
+          font: ${{ matrix.font }}
+          build-ref: ${{ env.BUILD_REF }}
+
+      - name: Release ${{ steps.ligaturize.outputs.new-version != '' && format('({0})', steps.ligaturize.outputs.new-version) || ''}}
+        uses: nhatthm/gh-actions/github-release@master
+        if: ${{ env.BUILD_FONT == 'true' }}
+        with:
+          name: "${{ steps.ligaturize.outputs.new-version }}"
+          tag_name: "${{ steps.ligaturize.outputs.new-version }}"
+          files: "./out/*.tar.gz"
+          body: |
+            # ${{ steps.ligaturize.outputs.font-name }}
+
+            > [!Note]
+            > The "with characters" zip, in addition to the ligatures, patches over some individual characters from Fira Code. This makes the transition between ligaturized and non-ligaturized versions of those characters less jarring, but also means the individual characters may look out of place in the surrounding text; which one is better depends on the font in question and personal preference. The specific characters that are patched over in "with characters" are: `&^~*\|:=!>-<#%.+?;/_`.
+
+            Ligaturized by [Ligaturizer ${{ env.LIGATURIZER_VERSION }}](https://github.com/nhatthm/ligaturizer) using [FontForge ${{ env.FONTFORGE_VERSION }}](https://fontforge.org/) and [FiraCode](https://github.com/tonsky/FiraCode).
+
+      - name: Upload Artifact
+        uses: nhatthm/gh-actions/upload-artifact@master
+        with:
+          name: ${{ env.METADATA_DIR }}-${{ matrix.font }}
+          path: ${{ env.METADATA_FILE }}
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [ligaturize]
+    permissions:
+      contents: write
+    env:
+      BUILD_DIR: build
+    steps:
+      - name: Checkout code
+        uses: nhatthm/gh-actions/checkout@master
+
+      - run: |
+          make "$GITHUB_ENV"
+          make "$GITHUB_OUTPUT"
+
+      - name: Download Artifact
+        uses: nhatthm/gh-actions/download-artifact@master
+        with:
+          path: ${{ env.METADATA_DIR }}
+          pattern: ${{ env.METADATA_DIR }}-*
+          merge-multiple: true
+
+      - name: Install dependencies
+        run: |
+          npm install -g mustache
+
+      - name: Build
+        run: |
+          mkdir -p "${BUILD_DIR}/${{ env.METADATA_DIR }}"
+
+          echo "> Build config.json"
+
+          echo -n '{}' | jq \
+            --arg page_title "Ligaturized Fonts" \
+            --arg page_description "" \
+            --arg host "fonts.nhat.io" \
+            --argjson fonts "$(jq -s -r -c -M '. | sort_by(.name)' metadata/*)" \
+            --arg source_url "https://github.com/${{ github.repository }}" \
+            '
+              .page_title = $page_title |
+              .page_description = $page_description |
+              .host = $host |
+              .source_url = $source_url |
+              .fonts = $fonts
+            ' \
+            | tee config.json
+
+          echo "> Render index.html"
+          npx mustache config.json "${{ env.TEMPLATES_DIR }}/index.html.hbs" > "${{ env.BUILD_DIR }}/index.html"
+          cp "${{ env.TEMPLATES_DIR }}/icon.png" "${{ env.BUILD_DIR }}/"
+
+          echo "> Render 404.html"
+          npx mustache config.json "${{ env.TEMPLATES_DIR }}/404.html.hbs" > "${{ env.BUILD_DIR }}/404.html"
+
+          echo "> Store metadata"
+          cp "${{ env.METADATA_DIR }}"/*.json "${{ env.BUILD_DIR }}/${{ env.METADATA_DIR }}/"
+
+      - name: Push
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ${{ env.BUILD_DIR }}
