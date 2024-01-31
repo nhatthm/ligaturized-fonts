@@ -1,0 +1,25 @@
+{
+    "id": "fantasque-sans-mono-largelineheight-noloopk",
+    "name": "Fantasque Sans Mono (LargeLineHeight, NoLoopK)",
+    "license": "MIT",
+    "license_url": "https://github.com/dejavu-fonts/dejavu-fonts/blob/master/LICENSE",
+    "installation": [
+        {
+            "url": "https://github.com/belluzj/fantasque-sans/releases/download/v1.8.0/FantasqueSansMono-LargeLineHeight-NoLoopK.zip",
+            "files": [
+                ".*.ttf",
+                ".*.otf",
+                "LICENSE.txt"
+            ]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "name": "Liga Fantasque Sans Mono LargeLineHeight NoLoopK",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf",
+            ".*.otf"
+        ]
+    }
+}

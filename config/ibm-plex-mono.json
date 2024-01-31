@@ -1,0 +1,23 @@
+{
+    "id": "ibm-plex-mono",
+    "name": "IBM Plex Mono",
+    "license": "OFL 1.1",
+    "license_url": "https://github.com/IBM/plex/blob/master/LICENSE.txt",
+    "installation": [
+        {
+            "url": "https://github.com/IBM/plex/releases/download/v6.4.0/IBM-Plex-Mono.zip",
+            "files": [
+                ".*.ttf",
+                "license.txt"
+            ]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "name": "Ligalex Mono",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf"
+        ]
+    }
+}
