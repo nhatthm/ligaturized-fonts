@@ -1,0 +1,51 @@
+---
+name: "Install font"
+description: "Install font to build"
+
+inputs:
+  font:
+    description: "Font to install"
+    required: true
+  token:
+    description: "Authorized secret GitHub Personal Access Token. Defaults to github.token"
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  path:
+    description: "Path to the installed font"
+    value: fonts/${{ inputs.font }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Env
+      shell: bash
+      run: |
+        make "$GITHUB_ENV"
+
+    - name: Config
+      shell: bash
+      run: |
+        FONT_DIR="${{ env.FONTS_DIR }}/${{ inputs.font }}"
+        FONT_CONFIG_FILE="${CONFIG_DIR}/${{ inputs.font }}.json"
+        FONT_CONFIG_HASH="$(sha1sum "${FONT_CONFIG_FILE}" | cut -c1-12)"
+
+        echo "FONT_DIR=${FONT_DIR}" >> "$GITHUB_ENV"
+        echo "FONT_CONFIG_FILE=${FONT_CONFIG_FILE}" >> "$GITHUB_ENV"
+        echo "FONT_CONFIG_HASH=${FONT_CONFIG_HASH}" >> "$GITHUB_ENV"
+
+    - name: "Download cache"
+      id: cache
+      uses: actions/cache@v4
+      with:
+        path: ${{ env.FONT_DIR }}
+        key: ${{ env.FONTS_DIR }}-${{ inputs.font }}-${{ env.FONT_CONFIG_HASH }}
+
+    - name: "Install font"
+      shell: bash
+      if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+      run: |
+        make "${{ env.FONT_DIR }}"
