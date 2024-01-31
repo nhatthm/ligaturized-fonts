@@ -1,0 +1,29 @@
+{
+    "id": "inconsolata",
+    "name": "Inconsolata",
+    "license": "OFL 1.1",
+    "license_url": "https://github.com/googlefonts/Inconsolata/blob/main/OFL.txt",
+    "installation": [
+        {
+            "url": "https://github.com/googlefonts/Inconsolata/releases/download/v3.000/fonts_ttf.zip",
+            "files": [
+                "Inconsolata-Bold.ttf",
+                "Inconsolata-Regular.ttf"
+            ]
+        },
+        {
+            "url": "https://api.github.com/repos/googlefonts/Inconsolata/contents?ref=main",
+            "files": [
+                "OFL.txt"
+            ]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "prefix": "Liga",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf"
+        ]
+    }
+}

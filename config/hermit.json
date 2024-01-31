@@ -1,0 +1,28 @@
+{
+    "id": "hermit",
+    "name": "Hermit",
+    "license": "OFL 1.1",
+    "license_url": "https://github.com/pcaro90/hermit/blob/master/LICENSE",
+    "installation": [
+        {
+            "url": "https://github.com/pcaro90/hermit/raw/master/packages/otf-hermit-2.0.tar.gz",
+            "files": [
+                ".*.otf"
+            ]
+        },
+        {
+            "url": "https://api.github.com/repos/pcaro90/hermit/contents?ref=master",
+            "files": [
+                "LICENSE"
+            ]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "name": "Ligamit",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.otf"
+        ]
+    }
+}
