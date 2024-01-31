@@ -1,0 +1,29 @@
+---
+name: "Ligaturize font"
+description: "Ligaturize font"
+
+inputs:
+  font:
+    description: "Font to ligaturize"
+    required: true
+  build-ref:
+    description: "Build Reference"
+    required: true
+
+outputs:
+  font-name:
+    description: "Font name"
+  metadata-file:
+    description: "Path to metadata file"
+  output-dir:
+    description: "Path to output directory"
+  new-version:
+    description: "New version"
+
+runs:
+  using: "docker"
+  image: docker://ghcr.io/nhatthm/ligaturizer:latest
+  args:
+    - "ligaturize-font-${{ inputs.font }}"
+    - "BUILD_REF=${{ inputs.build-ref }}"
+  entrypoint: "make"

@@ -1,0 +1,229 @@
+#!/usr/bin/env bash
+
+set -e
+
+FONT_CONFIG_FILE="$1"
+FONTS_DIR="${2:-fonts}"
+METADATA_DIR="${3:-metadata}"
+OUTPUT_DIR="${4:-out}"
+
+LIGATURIZER="${LIGATURIZER:-}"
+LIGATURIZER_VERSION="${LIGATURIZER_VERSION:-latest}"
+BUILD_REF="${BUILD_REF:-}"
+GITHUB_REPOSITORY="${GITHUB_REPOSITORY:-nhatthm/ligaturized-fonts}"
+GITHUB_ENV="${GITHUB_ENV:-/dev/null}"
+GITHUB_OUTPUT="${GITHUB_OUTPUT:-/dev/null}"
+
+if [[ -z "$FONT_CONFIG_FILE" ]]; then
+    echo >&2 "Mising font configuration file"
+    exit 1
+fi
+
+if [[ ! -f "$FONT_CONFIG_FILE" ]]; then
+    echo >&2 "Font configuration file not found: ${FONT_CONFIG_FILE}"
+    exit 1
+fi
+
+if [[ -z "$BUILD_REF" ]]; then
+    echo >&2 "Missing BUILD_REF"
+    exit 1
+fi
+
+FONT_ID=$(basename "${FONT_CONFIG_FILE}" .json)
+FONT_NAME=$(jq -r '.name' "${FONT_CONFIG_FILE}")
+FONT_DIR="${FONTS_DIR}/${FONT_ID}"
+FONT_OUTPUT_DIR="${OUTPUT_DIR}/output/${FONT_ID}"
+FONT_OUTPUT_WITH_CHARS_DIR="${OUTPUT_DIR}/output-with-characters/${FONT_ID}"
+FONT_METADATA_FILE="${METADATA_DIR}/${FONT_ID}.json"
+FONT_LICENSE_FILE="${FONT_DIR}/LICENSE.txt"
+
+rm -rf "$FONT_OUTPUT_DIR" "$FONT_OUTPUT_WITH_CHARS_DIR" "$FONT_METADATA_FILE"
+mkdir -p "$FONT_OUTPUT_DIR" "$FONT_OUTPUT_WITH_CHARS_DIR" "$(dirname "$FONT_METADATA_FILE")"
+
+if [[ ! -d "$FONT_OUTPUT_DIR" ]]; then
+    echo >&2 "Failed to create output directory: ${FONT_OUTPUT_DIR}"
+    exit 1
+fi
+
+if [[ ! -d "$FONT_OUTPUT_WITH_CHARS_DIR" ]]; then
+    echo >&2 "Failed to create output directory: ${FONT_OUTPUT_WITH_CHARS_DIR}"
+    exit 1
+fi
+
+LIGATURIZER_PREFIX="$(jq -r '.ligaturize.prefix // ""' "${FONT_CONFIG_FILE}")"
+LIGATURIZER_OUTPUT_NAME="$(jq -r '.ligaturize.name // ""' "${FONT_CONFIG_FILE}")"
+LIGATURIZER_SCALE_CHARACTER_GLYPH_THRESHOLD="$(jq -r '.ligaturize.scale_character_glyph_threshold // ""' "${FONT_CONFIG_FILE}")"
+LIGATURIZER_FILES_PATTERN="$(jq -r '.ligaturize.files // [] | .[]' "${FONT_CONFIG_FILE}" | tr '\n' '|' | sed 's/|$//')"
+
+if [[ -z "$LIGATURIZER" ]]; then
+    if [[ -z "$(command -v ligaturizer)" ]]; then
+        function ligaturizer() {
+            docker run --rm -v "$(pwd):/opt/fonts/workspace" -w /opt/fonts/workspace ghcr.io/nhatthm/ligaturizer:"${LIGATURIZER_VERSION}" "$@"
+        }
+    fi
+
+
+    LIGATURIZER="ligaturizer"
+fi
+
+# Find font version.
+FONT_VERSION=""
+for FONT_FILE in "${FONT_DIR}"/*; do
+    FONT_FILE_NAME=$(basename "${FONT_FILE}")
+
+    if ! grep -qE "${LIGATURIZER_FILES_PATTERN}" <<< "${FONT_FILE_NAME}"; then
+        continue
+    fi
+
+    FONT_VERSION=$("$LIGATURIZER" info "$FONT_FILE" 2>/dev/null | jq -r '.version // ""' 2>/dev/null || true)
+done
+
+echo "> Font version: ${FONT_VERSION}"
+
+# Generate Build ID.
+git config --global --add safe.directory /github/workspace
+
+FONT_VERSION_PATTERN="$(echo "$FONT_VERSION" | sed -e 's#+#\\+#')"
+
+if [[ "$FONT_VERSION" == *+* ]]; then
+    FONT_VERSION_PATTERN_WITH_BUILD_ID="${FONT_VERSION_PATTERN}\.${BUILD_ID}"
+else
+    FONT_VERSION_PATTERN_WITH_BUILD_ID="${FONT_VERSION_PATTERN}\+${BUILD_ID}"
+fi
+
+BUILD_ID=$(date +%y%m%d)
+LATEST_BUILD_ID=$(
+    (git for-each-ref --format '%(refname)' refs/tags |
+        sed -E 's#^refs/tags/##' |
+        grep -E "^${FONT_ID}/${FONT_VERSION_PATTERN_WITH_BUILD_ID}" || true) |
+	sed -E "s#^${FONT_ID}/${FONT_VERSION_PATTERN}\+##g" |
+    sort -t '.' -k1,1nr -k2,2nr |
+    head -1
+)
+
+if [[ -n "$LATEST_BUILD_ID" ]]; then
+    if [[ "$LATEST_BUILD_ID" == "$BUILD_ID" ]]; then
+        BUILD_ID="${BUILD_ID}.1"
+    else
+        BUILD_ITERATION=$(echo "$LATEST_BUILD_ID" | cut -d. -f2)
+        BUILD_ITERATION=$((BUILD_ITERATION + 1))
+        BUILD_ID="${BUILD_ID}.${BUILD_ITERATION}"
+    fi
+fi
+
+echo "> Build ID: ${BUILD_ID}"
+
+if [[ "$FONT_VERSION" == *+* ]]; then
+    FONT_LIGATURIZED_VERSION="${FONT_VERSION}.${BUILD_ID}"
+else
+    FONT_LIGATURIZED_VERSION="${FONT_VERSION}+${BUILD_ID}"
+fi
+
+FONT_LIGATURIZED_VERSION_ENCODED=$(echo -n "$FONT_LIGATURIZED_VERSION" | jq -sRr @uri)
+
+echo "> Font ligaturized version: ${FONT_LIGATURIZED_VERSION}"
+
+
+ARGS=(--build-id "${BUILD_ID}")
+
+if [[ -n "${LIGATURIZER_PREFIX}" ]]; then
+    ARGS+=("--prefix" "${LIGATURIZER_PREFIX}")
+fi
+
+if [[ -n "${LIGATURIZER_OUTPUT_NAME}" ]]; then
+    ARGS+=("--output-name" "${LIGATURIZER_OUTPUT_NAME}")
+fi
+
+if [[ -n "${LIGATURIZER_SCALE_CHARACTER_GLYPH_THRESHOLD}" ]]; then
+    ARGS+=("--scale-character-glyph-threshold" "${LIGATURIZER_SCALE_CHARACTER_GLYPH_THRESHOLD}")
+fi
+
+if [[ -n "${LIGATURIZER_FILES_PATTERN}" ]]; then
+    LIGATURIZER_FILES_PATTERN="(${LIGATURIZER_FILES_PATTERN})"
+else
+    LIGATURIZER_FILES_PATTERN=".*"
+fi
+
+# Ligaturize font.
+for FONT_FILE in "${FONT_DIR}"/*; do
+    FONT_FILE_NAME=$(basename "${FONT_FILE}")
+
+    if ! grep -qE "${LIGATURIZER_FILES_PATTERN}" <<< "${FONT_FILE_NAME}"; then
+        echo "> Skip: ${FONT_FILE_NAME}"
+
+        continue
+    fi
+
+    echo "> Ligarurize: ${FONT_FILE_NAME}"
+
+    "$LIGATURIZER" --input-font-file "${FONT_FILE}" --output-dir "${FONT_OUTPUT_DIR}" "${ARGS[@]}" 2>&1 \
+        | grep -Fv 'This contextual rule applies no lookups.' \
+        | grep -Fv 'Bad device table'
+
+    echo
+    echo "> Ligarurize: ${FONT_FILE_NAME} (--copy-character-glyphs)"
+
+    "$LIGATURIZER" --input-font-file "${FONT_FILE}" --output-dir "${FONT_OUTPUT_WITH_CHARS_DIR}" --copy-character-glyphs "${ARGS[@]}" 2>&1 \
+        | grep -Fv 'This contextual rule applies no lookups.' \
+        | grep -Fv 'Bad device table'
+
+    echo
+done
+
+if [[ -f "$FONT_LICENSE_FILE" ]]; then
+    cp "$FONT_LICENSE_FILE" "$FONT_OUTPUT_DIR/"
+    cp "$FONT_LICENSE_FILE" "$FONT_OUTPUT_WITH_CHARS_DIR/"
+fi
+
+# Generate metadata.
+FONT_NAME=$(jq -r '.name' "${FONT_CONFIG_FILE}")
+FONT_LICENSE=$(jq -r '.license' "${FONT_CONFIG_FILE}")
+FONT_LICENSE_URL=$(jq -r '.license_url' "${FONT_CONFIG_FILE}")
+
+echo -n "{}" | jq \
+    --arg id "$FONT_ID" \
+    --arg name "$FONT_NAME" \
+    --arg version "$FONT_VERSION" \
+    --arg ligaturized_version "$FONT_LIGATURIZED_VERSION" \
+    --arg build_ref "$BUILD_REF" \
+    --arg license "$FONT_LICENSE" \
+    --arg license_url "$FONT_LICENSE_URL" \
+    --arg download_url_no_chars "https://github.com/${GITHUB_REPOSITORY}/releases/download/${FONT_ID}%2F${FONT_LIGATURIZED_VERSION_ENCODED}/${FONT_ID}-${FONT_LIGATURIZED_VERSION_ENCODED}.tar.gz" \
+    --arg download_url_with_chars "https://github.com/${GITHUB_REPOSITORY}/releases/download/${FONT_ID}%2F${FONT_LIGATURIZED_VERSION_ENCODED}/${FONT_ID}-with-characters-${FONT_LIGATURIZED_VERSION_ENCODED}.tar.gz" \
+    '
+        .id = $id
+        | .name = $name
+        | .version = $version
+        | .ligaturized_version = $ligaturized_version
+        | .build_ref = $build_ref
+        | .license = $license
+        | .license_url = $license_url
+        | .download_urls = {
+            no_chars: $download_url_no_chars,
+            with_chars: $download_url_with_chars
+        }
+    ' \
+    > "$FONT_METADATA_FILE"
+
+(
+    echo "metadata-file=${FONT_METADATA_FILE}"
+    echo "output-dir=${OUTPUT_DIR}"
+    echo "new-version=${FONT_ID}/${FONT_LIGATURIZED_VERSION}"
+    echo "font-name=${FONT_NAME}"
+) >> "$GITHUB_OUTPUT"
+
+# Pack font.
+function realpath() {
+  # $1 : relative filename
+  echo "$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
+}
+
+OUTPUT_DIR=$(realpath "${OUTPUT_DIR}")
+
+echo "> Pack font: ${OUTPUT_DIR}/${FONT_ID}-${FONT_LIGATURIZED_VERSION}.tar.gz"
+(cd "${FONT_OUTPUT_DIR}"; tar cvzf "${OUTPUT_DIR}/${FONT_ID}-${FONT_LIGATURIZED_VERSION}.tar.gz" *)
+echo
+
+echo "> Pack font: ${OUTPUT_DIR}/${FONT_ID}-with-characters-${FONT_LIGATURIZED_VERSION}.tar.gz"
+(cd "${FONT_OUTPUT_WITH_CHARS_DIR}"; tar cvzf "${OUTPUT_DIR}/${FONT_ID}-with-characters-${FONT_LIGATURIZED_VERSION}.tar.gz" *)
+echo
