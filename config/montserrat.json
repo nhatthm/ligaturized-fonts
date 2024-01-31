@@ -1,0 +1,35 @@
+{
+    "id": "montserrat",
+    "name": "Montserrat",
+    "license": "OFL 1.1",
+    "license_url": "https://github.com/JulietaUla/Montserrat/blob/master/OFL.txt",
+    "installation": [
+        {
+            "url": "https://api.github.com/repos/JulietaUla/Montserrat/contents/fonts/otf?ref=v7.222",
+            "files": [
+                ".*.otf"
+            ]
+        },
+        {
+            "url": "https://api.github.com/repos/JulietaUla/Montserrat/contents/fonts/ttf?ref=v7.222",
+            "files": [
+                ".*.ttf"
+            ]
+        },
+        {
+            "url": "https://api.github.com/repos/JulietaUla/Montserrat/contents?ref=master",
+            "files": [
+                "OFL.txt"
+            ]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "prefix": "Liga",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.otf",
+            ".*.ttf"
+        ]
+    }
+}
