@@ -1,0 +1,23 @@
+{
+    "id": "anonymous-pro",
+    "name": "Anonymous Pro",
+    "license": "OFL 1.1",
+    "license_url": "https://github.com/chrissimpkins/codeface/blob/master/fonts/anonymous-pro/license.txt",
+    "installation": [
+        {
+            "url": "https://api.github.com/repos/chrissimpkins/codeface/contents/fonts/anonymous-pro?ref=483a6c9",
+            "files": [
+                ".*.ttf",
+                "license.txt"
+            ]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "name": "Liganymous",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf"
+        ]
+    }
+}

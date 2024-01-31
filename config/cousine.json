@@ -1,0 +1,18 @@
+{
+    "id": "cousine",
+    "name": "Cousine",
+    "license": "Apache License 2.0",
+    "license_url": "https://github.com/google/fonts/blob/main/apache/cousine/LICENSE.txt",
+    "installation": [
+        {
+            "url": "https://api.github.com/repos/google/fonts/contents/apache/cousine?ref=1db7140",
+            "files": [".*.ttf", "LICENSE.txt"]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "prefix": "Liga",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [".*.ttf"]
+    }
+}

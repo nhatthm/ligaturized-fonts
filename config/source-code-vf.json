@@ -1,0 +1,28 @@
+{
+    "id": "source-code-vf",
+    "name": "Source Code VF",
+    "license": "OFL 1.1",
+    "license_url": "https://github.com/adobe-fonts/source-code-pro/blob/release/LICENSE.md",
+    "installation": [
+        {
+            "url": "https://github.com/adobe-fonts/source-code-pro/releases/download/2.042R-u%2F1.062R-i%2F1.026R-vf/VF-source-code-VF-1.026R.zip",
+            "files": [
+                ".*.ttf"
+            ]
+        },
+        {
+            "url": "https://api.github.com/repos/adobe-fonts/source-code-pro/contents?ref=main",
+            "files": [
+                "LICENSE.md"
+            ]
+        }
+    ],
+    "ligaturize": {
+        "enabled": true,
+        "name": "LigaSrc VF",
+        "scale_character_glyph_threshold": 0.1,
+        "files": [
+            ".*.ttf"
+        ]
+    }
+}

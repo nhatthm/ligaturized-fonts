@@ -1,0 +1,41 @@
+---
+name: "List enabled fonts"
+description: "List enabled fonts to build"
+
+inputs:
+  filter:
+    description: "Filter fonts by name, comma separated. Leave it empty to list all fonts."
+    required: false
+    default: ""
+
+outputs:
+  fonts:
+    description: "Available fonts in JSON format"
+    value: ${{ steps.find.outputs.fonts }}
+
+runs:
+  using: "composite"
+  steps:
+    - id: find
+      name: "Find enabled fonts"
+      shell: bash
+      env:
+        FILTER: "${{ inputs.filter }}"
+      run: |
+        PATTERN=".*"
+
+        if [[ -n "${FILTER}" ]]; then
+          FILTER="($(echo -n "${FILTER}" | tr ',' '|'))"
+        fi
+
+        fonts="$(
+          make list-enabled-fonts \
+            | grep -E "^${PATTERN}$" \
+            | sort | uniq \
+            | jq -c -M -R -s 'split("\n") | [ .[] | select(length > 0) ]'
+        )"
+
+        echo "Enabled fonts:"
+        jq -r ".[]" <<< "${fonts}"
+
+        echo "fonts=${fonts}" >> "$GITHUB_OUTPUT"
