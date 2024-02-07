@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="404">
+    <title>Ligaturized Fonts</title>
+    <link rel="shortcut icon" type="image/png" href="https://fonts.nhat.io/icon.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <style media="all">
+        h1 {
+            margin-top: 40px;
+        }
+
+        .container {
+            margin-top: 30px;
+            max-height: 600px;
+            min-height: 450px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .column {
+            padding-left: 25px !important;
+            padding-right: 25px !important;
+        }
+
+        .footer {
+            padding-top: 2.5em;
+            font-size: 0.8em;
+        }
+
+        .octocat {
+            border: 0;
+            color: #f4f5f6;
+            fill: #9b4dca;
+            height: 5.2rem;
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 5.2rem;
+            z-index: 2;
+        }
+
+        .octocat .octocat-arm,
+        .octocat .octocat-body {
+            fill: #f4f5f6;
+        }
+
+        .octocat .octocat-arm,
+        .octocat .octocat-body {
+            fill: #f4f5f6;
+        }
+
+        .button-large {
+            font-size: 1.4rem;
+            height: 4.5rem;
+            line-height: 4.5rem;
+            padding: 0 2rem
+        }
+
+        .box {
+            width: 350px;
+            height: 100%;
+            max-height: 600px;
+            min-height: 450px;
+            background: #9b4dca;
+            border-radius: 20px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px 50px;
+        }
+
+        .box .box__ghost {
+            padding: 15px 25px 25px;
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -30%);
+        }
+
+        .box .box__ghost .symbol:nth-child(1) {
+            opacity: 0.4;
+            animation: shine 4s ease-in-out 3s infinite;
+        }
+
+        .box .box__ghost .symbol:nth-child(1):before,
+        .box .box__ghost .symbol:nth-child(1):after {
+            content: "";
+            width: 12px;
+            height: 4px;
+            background: #fff;
+            position: absolute;
+            border-radius: 5px;
+            bottom: 65px;
+            left: 0;
+        }
+
+        .box .box__ghost .symbol:nth-child(1):before {
+            transform: rotate(45deg);
+        }
+
+        .box .box__ghost .symbol:nth-child(1):after {
+            transform: rotate(-45deg);
+        }
+
+        .box .box__ghost .symbol:nth-child(2) {
+            position: absolute;
+            left: -5px;
+            top: 30px;
+            height: 18px;
+            width: 18px;
+            border: 4px solid;
+            border-radius: 50%;
+            border-color: #fff;
+            opacity: 0.4;
+            animation: shine 4s ease-in-out 1.3s infinite;
+        }
+
+        .box .box__ghost .symbol:nth-child(3) {
+            opacity: 0.4;
+            animation: shine 3s ease-in-out 0.5s infinite;
+        }
+
+        .box .box__ghost .symbol:nth-child(3):before,
+        .box .box__ghost .symbol:nth-child(3):after {
+            content: "";
+            width: 12px;
+            height: 4px;
+            background: #fff;
+            position: absolute;
+            border-radius: 5px;
+            top: 5px;
+            left: 40px;
+        }
+
+        .box .box__ghost .symbol:nth-child(3):before {
+            transform: rotate(90deg);
+        }
+
+        .box .box__ghost .symbol:nth-child(3):after {
+            transform: rotate(180deg);
+        }
+
+        .box .box__ghost .symbol:nth-child(4) {
+            opacity: 0.4;
+            animation: shine 6s ease-in-out 1.6s infinite;
+        }
+
+        .box .box__ghost .symbol:nth-child(4):before,
+        .box .box__ghost .symbol:nth-child(4):after {
+            content: "";
+            width: 15px;
+            height: 4px;
+            background: #fff;
+            position: absolute;
+            border-radius: 5px;
+            top: 10px;
+            right: 30px;
+        }
+
+        .box .box__ghost .symbol:nth-child(4):before {
+            transform: rotate(45deg);
+        }
+
+        .box .box__ghost .symbol:nth-child(4):after {
+            transform: rotate(-45deg);
+        }
+
+        .box .box__ghost .symbol:nth-child(5) {
+            position: absolute;
+            right: 5px;
+            top: 40px;
+            height: 12px;
+            width: 12px;
+            border: 3px solid;
+            border-radius: 50%;
+            border-color: #fff;
+            opacity: 0.4;
+            animation: shine 1.7s ease-in-out 7s infinite;
+        }
+
+        .box .box__ghost .symbol:nth-child(6) {
+            opacity: 0.4;
+            animation: shine 2s ease-in-out 6s infinite;
+        }
+
+        .box .box__ghost .symbol:nth-child(6):before,
+        .box .box__ghost .symbol:nth-child(6):after {
+            content: "";
+            width: 15px;
+            height: 4px;
+            background: #fff;
+            position: absolute;
+            border-radius: 5px;
+            bottom: 65px;
+            right: -5px;
+        }
+
+        .box .box__ghost .symbol:nth-child(6):before {
+            transform: rotate(90deg);
+        }
+
+        .box .box__ghost .symbol:nth-child(6):after {
+            transform: rotate(180deg);
+        }
+
+        .box .box__ghost .box__ghost-container {
+            background: #fff;
+            width: 100px;
+            height: 100px;
+            border-radius: 100px 100px 0 0;
+            position: relative;
+            margin: 0 auto;
+            animation: upndown 3s ease-in-out infinite;
+        }
+
+        .box .box__ghost .box__ghost-container .box__ghost-eyes {
+            position: absolute;
+            left: 50%;
+            top: 45%;
+            height: 12px;
+            width: 70px;
+        }
+
+        .box .box__ghost .box__ghost-container .box__ghost-eyes .box__eye-left {
+            width: 12px;
+            height: 12px;
+            background: #332f63;
+            border-radius: 50%;
+            margin: 0 10px;
+            position: absolute;
+            left: 0;
+        }
+
+        .box .box__ghost .box__ghost-container .box__ghost-eyes .box__eye-right {
+            width: 12px;
+            height: 12px;
+            background: #332f63;
+            border-radius: 50%;
+            margin: 0 10px;
+            position: absolute;
+            right: 0;
+        }
+
+        .box .box__ghost .box__ghost-container .box__ghost-bottom {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+
+        .box .box__ghost .box__ghost-container .box__ghost-bottom div {
+            flex-grow: 1;
+            position: relative;
+            top: -10px;
+            height: 20px;
+            border-radius: 100%;
+            background-color: #fff;
+        }
+
+        .box .box__ghost .box__ghost-container .box__ghost-bottom div:nth-child(2n) {
+            top: -12px;
+            margin: 0 0px;
+            border-top: 15px solid #332f63;
+            background: transparent;
+        }
+
+        .box .box__ghost .box__ghost-shadow {
+            height: 20px;
+            box-shadow: 0 50px 15px 5px #3b3769;
+            border-radius: 50%;
+            margin: 0 auto;
+            animation: smallnbig 3s ease-in-out infinite;
+        }
+
+        .box .box__description {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .box .box__description .box__description-container {
+            color: #fff;
+            text-align: center;
+            width: 200px;
+            font-size: 16px;
+            margin: 0 auto;
+        }
+
+        .box .box__description .box__description-container .box__description-title {
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .box .box__description .box__description-container .box__description-text {
+            color: #fff;
+            line-height: 20px;
+            margin-top: 20px;
+        }
+
+        .box .box__description .box__button {
+            display: block;
+            position: relative;
+            background: #fff;
+            border: 1px solid transparent;
+            text-align: center;
+            text-decoration: none;
+            color: #9b4dca;
+            padding: 0 70px;
+            white-space: nowrap;
+            margin-top: 25px;
+            overflow: hidden;
+        }
+
+        @keyframes upndown {
+            0% {
+                transform: translateY(5px);
+            }
+
+            50% {
+                transform: translateY(15px);
+            }
+
+            100% {
+                transform: translateY(5px);
+            }
+        }
+
+        @keyframes smallnbig {
+            0% {
+                width: 90px;
+            }
+
+            50% {
+                width: 100px;
+            }
+
+            100% {
+                width: 90px;
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                opacity: 0.2;
+            }
+
+            25% {
+                opacity: 0.1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+
+            100% {
+                opacity: 0.2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container"><a href="https://github.com/nhatthm/fonts.nhat.io" rel="noopener" target="_blank">
+            <svg class="octocat" viewBox="0 0 250 250">
+                <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+                <path class="octocat-arm"
+                    d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2">
+                </path>
+                <path class="octocat-body"
+                    d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z">
+                </path>
+            </svg>
+        </a>
+        <div class="row">
+            <div class="column column-50">
+                <div class="box">
+                    <div class="box__ghost">
+                        <div class="symbol"></div>
+                        <div class="symbol"></div>
+                        <div class="symbol"></div>
+                        <div class="symbol"></div>
+                        <div class="symbol"></div>
+                        <div class="symbol"></div>
+
+                        <div class="box__ghost-container">
+                            <div class="box__ghost-eyes">
+                                <div class="box__eye-left"></div>
+                                <div class="box__eye-right"></div>
+                            </div>
+                            <div class="box__ghost-bottom">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="box__ghost-shadow"></div>
+                    </div>
+
+                    <div class="box__description">
+                        <div class="box__description-container">
+                            <div class="box__description-title">Whoops!</div>
+                            <div class="box__description-text">It seems like we couldn't find the page you were looking
+                                for</div>
+                        </div>
+
+                        <a href="https://fonts.nhat.io/" target="_blank" class="box__button button button-large">Go back</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script id="rendered-js">
+        var pageX = $(document).width();
+        var pageY = $(document).height();
+        var mouseY = 0;
+        var mouseX = 0;
+
+        $(document).mousemove(function (event) {
+            mouseY = event.pageY;
+            yAxis = (pageY / 2 - mouseY) / pageY * 300;
+            mouseX = event.pageX / -pageX;
+            xAxis = -mouseX * 100 - 100;
+
+            $('.box__ghost-eyes').css({ 'transform': 'translate(' + xAxis + '%,-' + yAxis + '%)' });
+        });
+    </script>
+</body>
+
+</html>
