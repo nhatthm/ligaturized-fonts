@@ -1,0 +1,13 @@
+{
+  "id": "hermit",
+  "name": "Hermit",
+  "version": "2.0.0",
+  "ligaturized_version": "2.0.0+240208",
+  "build_ref": "48c39d8521fb762a2962dfa22bb6e6034813bbc8",
+  "license": "OFL 1.1",
+  "license_url": "https://github.com/pcaro90/hermit/blob/master/LICENSE",
+  "download_urls": {
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/hermit%2F2.0.0%2B240208/hermit-2.0.0%2B240208.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/hermit%2F2.0.0%2B240208/hermit-with-characters-2.0.0%2B240208.tar.gz"
+  }
+}
