@@ -2,12 +2,12 @@
   "id": "cousine",
   "name": "Cousine",
   "version": "1.21.0",
-  "ligaturized_version": "1.21.0+240207",
-  "build_ref": "046846b17d146eeeb223a031e698091d800bccdf",
+  "ligaturized_version": "1.21.0+240208.240208",
+  "build_ref": "b5317a7c93edb6fec058841eb1ef4b6005135b23",
   "license": "Apache License 2.0",
   "license_url": "https://github.com/google/fonts/blob/main/apache/cousine/LICENSE.txt",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/cousine%2F1.21.0%2B240207/cousine-1.21.0%2B240207.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/cousine%2F1.21.0%2B240207/cousine-with-characters-1.21.0%2B240207.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/cousine%2F1.21.0%2B240208.240208/cousine-1.21.0%2B240208.240208.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/cousine%2F1.21.0%2B240208.240208/cousine-with-characters-1.21.0%2B240208.240208.tar.gz"
   }
 }
