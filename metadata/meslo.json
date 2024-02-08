@@ -1,0 +1,13 @@
+{
+  "id": "meslo",
+  "name": "Meslo",
+  "version": "1.210.0",
+  "ligaturized_version": "1.210.0+240208",
+  "build_ref": "c9519faeb053f660b00e3d5c884c625e80bd0370",
+  "license": "Apache License 2.0",
+  "license_url": "http://www.apache.org/licenses/LICENSE-2.0.html",
+  "download_urls": {
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/meslo%2F1.210.0%2B240208/meslo-1.210.0%2B240208.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/meslo%2F1.210.0%2B240208/meslo-with-characters-1.210.0%2B240208.tar.gz"
+  }
+}
