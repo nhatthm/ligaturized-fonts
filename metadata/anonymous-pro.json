@@ -1,0 +1,13 @@
+{
+  "id": "anonymous-pro",
+  "name": "Anonymous Pro",
+  "version": "1.2.0",
+  "ligaturized_version": "1.2.0+240208",
+  "build_ref": "1d14df100b878d32f4480bf5de1edd6ca45c5b69",
+  "license": "OFL 1.1",
+  "license_url": "https://github.com/chrissimpkins/codeface/blob/master/fonts/anonymous-pro/license.txt",
+  "download_urls": {
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/anonymous-pro%2F1.2.0%2B240208/anonymous-pro-1.2.0%2B240208.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/anonymous-pro%2F1.2.0%2B240208/anonymous-pro-with-characters-1.2.0%2B240208.tar.gz"
+  }
+}
