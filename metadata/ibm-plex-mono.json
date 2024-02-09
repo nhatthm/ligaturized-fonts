@@ -2,12 +2,12 @@
   "id": "ibm-plex-mono",
   "name": "IBM Plex Mono",
   "version": "2.4.0",
-  "ligaturized_version": "2.4.0+240209.240209",
+  "ligaturized_version": "2.4.0+240209",
   "build_ref": "6e779ce3acc34840f121f0c0c240e85f2e7f2ca2",
   "license": "OFL 1.1",
   "license_url": "https://github.com/IBM/plex/blob/master/LICENSE.txt",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/ibm-plex-mono%2F2.4.0%2B240209.240209/ibm-plex-mono-2.4.0%2B240209.240209.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/ibm-plex-mono%2F2.4.0%2B240209.240209/ibm-plex-mono-with-characters-2.4.0%2B240209.240209.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/ibm-plex-mono%2F2.4.0%2B240209/ibm-plex-mono-2.4.0%2B240209.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/ibm-plex-mono%2F2.4.0%2B240209/ibm-plex-mono-with-characters-2.4.0%2B240209.tar.gz"
   }
 }

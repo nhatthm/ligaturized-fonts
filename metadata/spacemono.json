@@ -2,12 +2,12 @@
   "id": "spacemono",
   "name": "Space Mono",
   "version": "1.0.0",
-  "ligaturized_version": "1.0.0+240209.240209",
+  "ligaturized_version": "1.0.0+240209",
   "build_ref": "a6e566d89360defca6b30b355f6bd0aaa9b877ad",
   "license": "OFL 1.1",
   "license_url": "https://github.com/googlefonts/spacemono/blob/main/LICENSE.txt",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/spacemono%2F1.0.0%2B240209.240209/spacemono-1.0.0%2B240209.240209.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/spacemono%2F1.0.0%2B240209.240209/spacemono-with-characters-1.0.0%2B240209.240209.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/spacemono%2F1.0.0%2B240209/spacemono-1.0.0%2B240209.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/spacemono%2F1.0.0%2B240209/spacemono-with-characters-1.0.0%2B240209.tar.gz"
   }
 }

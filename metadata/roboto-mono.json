@@ -2,12 +2,12 @@
   "id": "roboto-mono",
   "name": "RobotoMono",
   "version": "3.0.0",
-  "ligaturized_version": "3.0.0+240209.240209",
+  "ligaturized_version": "3.0.0+240209",
   "build_ref": "b85ce4637aede6af6df9c0d4602f38d508000282",
   "license": "Apache License 2.0",
   "license_url": "http://www.apache.org/licenses/LICENSE-2.0.html",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/roboto-mono%2F3.0.0%2B240209.240209/roboto-mono-3.0.0%2B240209.240209.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/roboto-mono%2F3.0.0%2B240209.240209/roboto-mono-with-characters-3.0.0%2B240209.240209.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/roboto-mono%2F3.0.0%2B240209/roboto-mono-3.0.0%2B240209.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/roboto-mono%2F3.0.0%2B240209/roboto-mono-with-characters-3.0.0%2B240209.tar.gz"
   }
 }
