@@ -9,7 +9,7 @@ OUTPUT_DIR="${4:-out}"
 
 LIGATURIZER="${LIGATURIZER:-}"
 LIGATURIZER_VERSION="${LIGATURIZER_VERSION:-latest}"
-BUILD_REF="${BUILD_REF:-}"
+BUILD_REF="${BUILD_REF:-$(od -x /dev/urandom | head -1 | awk '{OFS="-"; print $2$3,$4,$5,$6,$7$8$9}')}"
 GITHUB_REPOSITORY="${GITHUB_REPOSITORY:-nhatthm/ligaturized-fonts}"
 GITHUB_ENV="${GITHUB_ENV:-/dev/null}"
 GITHUB_OUTPUT="${GITHUB_OUTPUT:-/dev/null}"
@@ -85,13 +85,14 @@ git config --global --add safe.directory /github/workspace
 
 FONT_VERSION_PATTERN="$(echo "$FONT_VERSION" | sed -e 's#+#\\+#')"
 
+BUILD_ID=$(date +%y%m%d)
+
 if [[ "$FONT_VERSION" == *+* ]]; then
     FONT_VERSION_PATTERN_WITH_BUILD_ID="${FONT_VERSION_PATTERN}\.${BUILD_ID}"
 else
     FONT_VERSION_PATTERN_WITH_BUILD_ID="${FONT_VERSION_PATTERN}\+${BUILD_ID}"
 fi
 
-BUILD_ID=$(date +%y%m%d)
 LATEST_BUILD_ID=$(
     (git for-each-ref --format '%(refname)' refs/tags |
         sed -E 's#^refs/tags/##' |
@@ -105,12 +106,13 @@ if [[ -n "$LATEST_BUILD_ID" ]]; then
     if [[ "$LATEST_BUILD_ID" == "$BUILD_ID" ]]; then
         BUILD_ID="${BUILD_ID}.1"
     else
-        BUILD_ITERATION=$(echo "$LATEST_BUILD_ID" | cut -d. -f2)
-        BUILD_ITERATION=$((BUILD_ITERATION + 1))
+        BUILD_ITERATION=$(echo "$LATEST_BUILD_ID" | cut -sd. -f2)
+        BUILD_ITERATION=$((${BUILD_ITERATION:-0} + 1))
         BUILD_ID="${BUILD_ID}.${BUILD_ITERATION}"
     fi
 fi
 
+echo "> Build Ref: ${BUILD_REF}"
 echo "> Build ID: ${BUILD_ID}"
 
 if [[ "$FONT_VERSION" == *+* ]]; then
