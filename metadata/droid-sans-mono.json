@@ -2,12 +2,12 @@
   "id": "droid-sans-mono",
   "name": "Droid Sans Mono",
   "version": "1.0.0+112",
-  "ligaturized_version": "1.0.0+112.240209.1",
-  "build_ref": "a46d8cfaf5ad6d15468d67e8011c2266cc3866e2",
+  "ligaturized_version": "1.0.0+112.240219",
+  "build_ref": "10c31c17e64dba2f460c23e2882c58524c2e724b",
   "license": "Apache License 2.0",
   "license_url": "http://www.apache.org/licenses/LICENSE-2.0.html",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/droid-sans-mono%2F1.0.0%2B112.240209.1/droid-sans-mono-1.0.0%2B112.240209.1.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/droid-sans-mono%2F1.0.0%2B112.240209.1/droid-sans-mono-with-characters-1.0.0%2B112.240209.1.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/droid-sans-mono%2F1.0.0%2B112.240219/droid-sans-mono-1.0.0%2B112.240219.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/droid-sans-mono%2F1.0.0%2B112.240219/droid-sans-mono-with-characters-1.0.0%2B112.240219.tar.gz"
   }
 }

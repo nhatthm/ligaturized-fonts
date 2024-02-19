@@ -2,12 +2,12 @@
   "id": "source-code-vf",
   "name": "Source Code VF",
   "version": "1.26.0",
-  "ligaturized_version": "1.26.0+240209",
-  "build_ref": "90d032e1b451cf05f6fba68243e8d6804a830768",
+  "ligaturized_version": "1.26.0+240219",
+  "build_ref": "85a608c0137c8dc3d2d0c89b56d56fcac53f4b23",
   "license": "OFL 1.1",
   "license_url": "https://github.com/adobe-fonts/source-code-pro/blob/release/LICENSE.md",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/source-code-vf%2F1.26.0%2B240209/source-code-vf-1.26.0%2B240209.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/source-code-vf%2F1.26.0%2B240209/source-code-vf-with-characters-1.26.0%2B240209.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/source-code-vf%2F1.26.0%2B240219/source-code-vf-1.26.0%2B240219.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/source-code-vf%2F1.26.0%2B240219/source-code-vf-with-characters-1.26.0%2B240219.tar.gz"
   }
 }

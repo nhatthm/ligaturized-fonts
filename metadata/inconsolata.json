@@ -2,12 +2,12 @@
   "id": "inconsolata",
   "name": "Inconsolata",
   "version": "3.0.0",
-  "ligaturized_version": "3.0.0+240209",
-  "build_ref": "71780d8c7df177c9a640703141160f4bdad386f6",
+  "ligaturized_version": "3.0.0+240219",
+  "build_ref": "48711de663dbd748f9b9d0222049d48518c5bfda",
   "license": "OFL 1.1",
   "license_url": "https://github.com/googlefonts/Inconsolata/blob/main/OFL.txt",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/inconsolata%2F3.0.0%2B240209/inconsolata-3.0.0%2B240209.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/inconsolata%2F3.0.0%2B240209/inconsolata-with-characters-3.0.0%2B240209.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/inconsolata%2F3.0.0%2B240219/inconsolata-3.0.0%2B240219.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/inconsolata%2F3.0.0%2B240219/inconsolata-with-characters-3.0.0%2B240219.tar.gz"
   }
 }

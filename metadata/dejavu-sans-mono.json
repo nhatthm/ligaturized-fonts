@@ -2,12 +2,12 @@
   "id": "dejavu-sans-mono",
   "name": "DejaVu Sans Mono",
   "version": "2.37.0",
-  "ligaturized_version": "2.37.0+240209",
-  "build_ref": "dbf0e603cde5a484bfc2d5a3ea5c3123613bb07c",
+  "ligaturized_version": "2.37.0+240219",
+  "build_ref": "d610d4515db6c9fcf5ae7f7ea71be176d77bae0f",
   "license": "MIT",
   "license_url": "https://github.com/dejavu-fonts/dejavu-fonts/blob/master/LICENSE",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/dejavu-sans-mono%2F2.37.0%2B240209/dejavu-sans-mono-2.37.0%2B240209.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/dejavu-sans-mono%2F2.37.0%2B240209/dejavu-sans-mono-with-characters-2.37.0%2B240209.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/dejavu-sans-mono%2F2.37.0%2B240219/dejavu-sans-mono-2.37.0%2B240219.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/dejavu-sans-mono%2F2.37.0%2B240219/dejavu-sans-mono-with-characters-2.37.0%2B240219.tar.gz"
   }
 }

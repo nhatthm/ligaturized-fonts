@@ -2,12 +2,12 @@
   "id": "fantasque-sans-mono-largelineheight-noloopk",
   "name": "Fantasque Sans Mono (LargeLineHeight, NoLoopK)",
   "version": "1.8.0",
-  "ligaturized_version": "1.8.0+240209.3",
-  "build_ref": "c76e76b1f3f887d6074a6dd1d3a85699c89dbf80",
+  "ligaturized_version": "1.8.0+240219",
+  "build_ref": "32c0af74a6431ce397493a9df04762ec35be6d9e",
   "license": "MIT",
   "license_url": "https://github.com/dejavu-fonts/dejavu-fonts/blob/master/LICENSE",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-largelineheight-noloopk%2F1.8.0%2B240209.3/fantasque-sans-mono-largelineheight-noloopk-1.8.0%2B240209.3.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-largelineheight-noloopk%2F1.8.0%2B240209.3/fantasque-sans-mono-largelineheight-noloopk-with-characters-1.8.0%2B240209.3.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-largelineheight-noloopk%2F1.8.0%2B240219/fantasque-sans-mono-largelineheight-noloopk-1.8.0%2B240219.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-largelineheight-noloopk%2F1.8.0%2B240219/fantasque-sans-mono-largelineheight-noloopk-with-characters-1.8.0%2B240219.tar.gz"
   }
 }
