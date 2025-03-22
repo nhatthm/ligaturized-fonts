@@ -5,7 +5,7 @@
     "license_url": "https://github.com/canonical/Ubuntu-Sans-Mono-fonts/blob/main/LICENCE.txt",
     "installation": [
         {
-            "url": "https://github.com/canonical/Ubuntu-Sans-Mono-fonts/releases/download/v1.006/UbuntuSansMono-fonts-1.006.zip",
+            "url": "https://github.com/canonical/Ubuntu-Sans-Mono-fonts/releases/download/v1.004/UbuntuSansMono-fonts-v1.004.zip",
             "files": [
                 "[a-zA-Z0-9_-]+\\.ttf"
             ]
