@@ -2,12 +2,12 @@
   "id": "oxygen-mono",
   "name": "Oxygen Mono",
   "version": "0.201.0",
-  "ligaturized_version": "0.201.0+240219",
-  "build_ref": "879f80feea24d054f721617bb23ca419145294ce",
+  "ligaturized_version": "0.201.0+250322.1",
+  "build_ref": "5bc417fe4689e3e0db92264f29d32ce18fa867e9",
   "license": "OFL 1.1",
   "license_url": "https://github.com/google/fonts/blob/main/ofl/oxygenmono/OFL.txt",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/oxygen-mono%2F0.201.0%2B240219/oxygen-mono-0.201.0%2B240219.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/oxygen-mono%2F0.201.0%2B240219/oxygen-mono-with-characters-0.201.0%2B240219.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/oxygen-mono%2F0.201.0%2B250322.1/oxygen-mono-0.201.0%2B250322.1.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/oxygen-mono%2F0.201.0%2B250322.1/oxygen-mono-with-characters-0.201.0%2B250322.1.tar.gz"
   }
 }

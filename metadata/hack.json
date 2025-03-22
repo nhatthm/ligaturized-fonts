@@ -2,12 +2,12 @@
   "id": "hack",
   "name": "Hack",
   "version": "3.3.0",
-  "ligaturized_version": "3.3.0+240219",
-  "build_ref": "938d1f9b968d53b5cda06daf7f97fb2dd6b59981",
+  "ligaturized_version": "3.3.0+250322",
+  "build_ref": "3113a3f5c6383b7e2686ac119e1359713324655f",
   "license": "MIT",
   "license_url": "https://github.com/source-foundry/Hack/blob/master/LICENSE.md",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/hack%2F3.3.0%2B240219/hack-3.3.0%2B240219.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/hack%2F3.3.0%2B240219/hack-with-characters-3.3.0%2B240219.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/hack%2F3.3.0%2B250322/hack-3.3.0%2B250322.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/hack%2F3.3.0%2B250322/hack-with-characters-3.3.0%2B250322.tar.gz"
   }
 }

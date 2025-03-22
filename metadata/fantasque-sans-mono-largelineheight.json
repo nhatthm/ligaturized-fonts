@@ -2,12 +2,12 @@
   "id": "fantasque-sans-mono-largelineheight",
   "name": "Fantasque Sans Mono (LargeLineHeight)",
   "version": "1.8.0",
-  "ligaturized_version": "1.8.0+240219",
-  "build_ref": "33922906cf2cc30f45dd2ca874621705179c73d9",
+  "ligaturized_version": "1.8.0+250322.1",
+  "build_ref": "8d3180d3eb5e0a100de047a90c23b3491f7e9a99",
   "license": "OFL 1.1",
   "license_url": "https://github.com/belluzj/fantasque-sans/blob/master/LICENSE.txt",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-largelineheight%2F1.8.0%2B240219/fantasque-sans-mono-largelineheight-1.8.0%2B240219.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-largelineheight%2F1.8.0%2B240219/fantasque-sans-mono-largelineheight-with-characters-1.8.0%2B240219.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-largelineheight%2F1.8.0%2B250322.1/fantasque-sans-mono-largelineheight-1.8.0%2B250322.1.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-largelineheight%2F1.8.0%2B250322.1/fantasque-sans-mono-largelineheight-with-characters-1.8.0%2B250322.1.tar.gz"
   }
 }

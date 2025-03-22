@@ -2,12 +2,12 @@
   "id": "edlo",
   "name": "Edlo",
   "version": "0.1.0",
-  "ligaturized_version": "0.1.0+240219",
-  "build_ref": "8788237ea4145c4d712d88ff90fbbbb2571c667e",
+  "ligaturized_version": "0.1.0+250322",
+  "build_ref": "0783d2301aad0062bc2b1ccbc88f18e7d630e3e5",
   "license": "OFL 1.1",
   "license_url": "https://openfontlicense.org/",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/edlo%2F0.1.0%2B240219/edlo-0.1.0%2B240219.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/edlo%2F0.1.0%2B240219/edlo-with-characters-0.1.0%2B240219.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/edlo%2F0.1.0%2B250322/edlo-0.1.0%2B250322.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/edlo%2F0.1.0%2B250322/edlo-with-characters-0.1.0%2B250322.tar.gz"
   }
 }

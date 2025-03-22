@@ -2,12 +2,12 @@
   "id": "fantasque-sans-mono-noloopk",
   "name": "Fantasque Sans Mono (NoLoopK)",
   "version": "1.8.0",
-  "ligaturized_version": "1.8.0+240219",
-  "build_ref": "1815b7e932e80808dfc2ad1739f22498bf8496e6",
+  "ligaturized_version": "1.8.0+250322.1",
+  "build_ref": "1dd2b72ef84a41a32967035f60ccbcf7003ee955",
   "license": "OFL 1.1",
   "license_url": "https://github.com/belluzj/fantasque-sans/blob/master/LICENSE.txt",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-noloopk%2F1.8.0%2B240219/fantasque-sans-mono-noloopk-1.8.0%2B240219.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-noloopk%2F1.8.0%2B240219/fantasque-sans-mono-noloopk-with-characters-1.8.0%2B240219.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-noloopk%2F1.8.0%2B250322.1/fantasque-sans-mono-noloopk-1.8.0%2B250322.1.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/fantasque-sans-mono-noloopk%2F1.8.0%2B250322.1/fantasque-sans-mono-noloopk-with-characters-1.8.0%2B250322.1.tar.gz"
   }
 }

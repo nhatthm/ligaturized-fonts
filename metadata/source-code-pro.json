@@ -2,12 +2,12 @@
   "id": "source-code-pro",
   "name": "Source Code Pro",
   "version": "1.62.0",
-  "ligaturized_version": "1.62.0+240219",
-  "build_ref": "ffb585a082acb7eb0a1a9a31884faf5d81053c17",
+  "ligaturized_version": "1.62.0+250322",
+  "build_ref": "6d22306ce0c47e6382f48648996f7fa347ad5bd1",
   "license": "OFL 1.1",
   "license_url": "https://github.com/adobe-fonts/source-code-pro/blob/release/LICENSE.md",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/source-code-pro%2F1.62.0%2B240219/source-code-pro-1.62.0%2B240219.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/source-code-pro%2F1.62.0%2B240219/source-code-pro-with-characters-1.62.0%2B240219.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/source-code-pro%2F1.62.0%2B250322/source-code-pro-1.62.0%2B250322.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/source-code-pro%2F1.62.0%2B250322/source-code-pro-with-characters-1.62.0%2B250322.tar.gz"
   }
 }
