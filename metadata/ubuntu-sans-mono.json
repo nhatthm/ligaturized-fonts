@@ -2,12 +2,12 @@
   "id": "ubuntu-sans-mono",
   "name": "Ubuntu Sans Mono",
   "version": "1.4.0",
-  "ligaturized_version": "1.4.0+250322",
-  "build_ref": "68f2c28f12bf40f2c14d48f62746c2d94992230e",
+  "ligaturized_version": "1.4.0+250730",
+  "build_ref": "7a872d2e45a43c9063123682ef1f5f8e8f6f6ddc",
   "license": "Ubuntu Font License 1.0",
   "license_url": "https://github.com/canonical/Ubuntu-Sans-Mono-fonts/blob/main/LICENCE.txt",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/ubuntu-sans-mono%2F1.4.0%2B250322/ubuntu-sans-mono-1.4.0%2B250322.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/ubuntu-sans-mono%2F1.4.0%2B250322/ubuntu-sans-mono-with-characters-1.4.0%2B250322.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/ubuntu-sans-mono%2F1.4.0%2B250730/ubuntu-sans-mono-1.4.0%2B250730.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/ubuntu-sans-mono%2F1.4.0%2B250730/ubuntu-sans-mono-with-characters-1.4.0%2B250730.tar.gz"
   }
 }

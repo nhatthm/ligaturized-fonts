@@ -2,12 +2,12 @@
   "id": "montserrat",
   "name": "Montserrat",
   "version": "7.222.0",
-  "ligaturized_version": "7.222.0+250322",
-  "build_ref": "6e6db4195fffe44badbcfc9c97dbbf021c5d8559",
+  "ligaturized_version": "7.222.0+250730",
+  "build_ref": "91d7cd5eee0eeba0f34c9bf7bb59d929aaae427d",
   "license": "OFL 1.1",
   "license_url": "https://github.com/JulietaUla/Montserrat/blob/master/OFL.txt",
   "download_urls": {
-    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/montserrat%2F7.222.0%2B250322/montserrat-7.222.0%2B250322.tar.gz",
-    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/montserrat%2F7.222.0%2B250322/montserrat-with-characters-7.222.0%2B250322.tar.gz"
+    "no_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/montserrat%2F7.222.0%2B250730/montserrat-7.222.0%2B250730.tar.gz",
+    "with_chars": "https://github.com/nhatthm/ligaturized-fonts/releases/download/montserrat%2F7.222.0%2B250730/montserrat-with-characters-7.222.0%2B250730.tar.gz"
   }
 }
