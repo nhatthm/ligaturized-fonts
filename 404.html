@@ -124,14 +124,14 @@ nav { width: 100%; max-width: 720px; margin: 0 auto; display: flex; align-items:
 
 <script>
 (function () {
+  var MAX_SHIFT = 6;
+
   document.addEventListener('mousemove', function (e) {
     var eyes = document.querySelector('.box__ghost-eyes');
     if (!eyes) return;
-    var pageX = document.documentElement.clientWidth;
-    var pageY = document.documentElement.clientHeight;
-    var yAxis = (pageY / 2 - e.clientY) / pageY * 300;
-    var xAxis = -(e.clientX / -pageX) * 100 - 100;
-    eyes.style.transform = 'translate(' + xAxis + '%,-' + yAxis + '%)';
+    var nx = (e.clientX / window.innerWidth) * 2 - 1;
+    var ny = (e.clientY / window.innerHeight) * 2 - 1;
+    eyes.style.transform = 'translate(calc(-50% + ' + (nx * MAX_SHIFT).toFixed(2) + 'px), ' + (ny * MAX_SHIFT).toFixed(2) + 'px)';
   });
 })();
 </script>
