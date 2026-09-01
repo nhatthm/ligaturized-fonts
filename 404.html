@@ -22,15 +22,15 @@
 }
 * { box-sizing: border-box; }
 html, body { overflow-x: hidden; }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Outfit', system-ui, sans-serif; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Outfit', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: var(--ink); text-decoration: none; }
 a:hover { opacity: .7; }
 .mark-link { text-decoration: none; padding-bottom: 1px; border-bottom: 1px solid var(--line); transition: border-bottom-width .2s cubic-bezier(.4,0,.2,1), border-color .2s cubic-bezier(.4,0,.2,1); }
 .mark-link:hover { opacity: 1; color: var(--accent); border-bottom: 2px solid var(--accent); }
 .coffee-rail { display: flex; }
 .coffee-inline { display: none; }
-nav { width: 100%; max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 28px; border-bottom: 1px solid var(--line); font-size: 15px; font-weight: 500; }
-.split { flex: 1; min-height: 0; width: 100%; max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: 288px 1fr; align-items: center; gap: 44px; padding: 72px 28px; }
+nav { width: 100%; max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--line); font-size: 15px; font-weight: 500; }
+.split { flex: 1; min-height: 0; width: 100%; max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: 288px 1fr; align-items: center; gap: 44px; padding: 72px 0; }
 .split-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; min-width: 0; }
 .split-p { margin: 0; max-width: 38ch; font-size: 18px; font-weight: 300; line-height: 1.7; color: var(--body); }
 .ghost-panel { position: relative; width: 288px; height: 300px; }
@@ -72,13 +72,14 @@ nav { width: 100%; max-width: 720px; margin: 0 auto; display: flex; align-items:
 @media (prefers-reduced-motion: reduce) { .box__ghost-container, .box__ghost-shadow, .box__ghost .symbol { animation: none !important; } }
 @media (max-width: 900px) { .coffee-rail { display: none; } .coffee-inline { display: inline-flex; } }
 @media (max-width: 680px) {
-  .split { grid-template-columns: 1fr !important; grid-auto-rows: min-content; align-content: center; justify-items: center; gap: 24px !important; padding: 40px 28px !important; text-align: center; }
+  .split { grid-template-columns: 1fr !important; grid-auto-rows: min-content; align-content: center; justify-items: center; gap: 24px !important; padding: 40px 0 !important; text-align: center; }
   .split-copy { align-items: center !important; }
   .ghost-panel { width: 240px !important; height: 270px !important; }
 }
 </style>
 </head>
 <body>
+<div style="background:var(--bg); color:var(--ink); min-height:100vh; padding:0 28px; display:flex; flex-direction:column">
 <a class="coffee-rail" href="https://donate.nhat.me" target="_blank" rel="noopener noreferrer" style="position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:30; flex-direction:column; align-items:center; gap:8px; padding:16px 12px; border-radius:999px; background:var(--bg); border:1px solid var(--line); box-shadow:0 6px 20px rgba(20,22,43,.10); font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent)">
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"></path><path d="M17 9h1.6a2.4 2.4 0 0 1 0 4.8H17"></path><path d="M7 4.5c0 .8.8 1 .8 1.8"></path><path d="M11 4c0 .9.9 1.2.9 2.1"></path></svg>
   <span style="writing-mode:vertical-rl">Buy me a coffee</span>
@@ -120,6 +121,7 @@ nav { width: 100%; max-width: 720px; margin: 0 auto; display: flex; align-items:
     <p class="split-p">It seems like we couldn't find the page you were looking for. <a class="mark-link" href="https://fonts.nhat.io">Go back</a>.</p>
     <a class="coffee-inline" href="https://donate.nhat.me" target="_blank" rel="noopener noreferrer" style="padding:12px 24px; border-radius:999px; border:1px solid var(--line); font-size:15px; font-weight:500; color:var(--accent)">Buy me a coffee</a>
   </div>
+</div>
 </div>
 
 <script>
