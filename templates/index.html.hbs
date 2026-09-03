@@ -6,82 +6,21 @@
 <meta name="description" content="{{ page_description }}">
 <title>{{ page_title }}</title>
 <link rel="shortcut icon" type="image/png" href="https://{{ host }}/icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap">
-<style>
-:root {
-  --bg: #F7F7FB; --ink: #14162B; --body: #4C4F66; --mute: #63667F;
-  --line: #E1E1EC; --btn: #2547E8; --btn-ink: #FFFFFF; --accent: #2547E8;
-  --card: #FFFFFF; --code: #14162B; --code-ink: #EEEEF6; --hover: rgba(37,71,232,.045);
-  --warn: #B4361D; --warn-line: rgba(180,54,29,.30);
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0E0F1A; --ink: #EEEEF6; --body: #A2A5BC; --mute: #8A8DA6;
-    --line: #22243A; --btn: #8AA8FF; --btn-ink: #0E0F1A; --accent: #8AA8FF;
-    --card: #14162B; --code: #191B2E; --code-ink: #EEEEF6; --hover: rgba(138,168,255,.07);
-    --warn: #FF9E86; --warn-line: rgba(255,158,134,.32);
-  }
-}
-* { box-sizing: border-box; }
-html, body { overflow-x: hidden; }
-body { margin: 0; background: var(--bg); font-family: 'Outfit', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-a { color: var(--ink); text-decoration: none; }
-a:hover { opacity: .7; }
-input { font-family: inherit; }
-input::placeholder { color: var(--mute); opacity: 1; }
-.coffee-rail { display: flex; }
-.coffee-inline { display: none; }
-.wrap { width: 100%; max-width: 720px; margin: 0 auto; padding: 56px 0 80px; display: flex; flex-direction: column; }
-.specimen-box { display: flex; align-items: center; background: var(--code); border-radius: 16px; padding: 18px 20px; overflow-x: auto; }
-.specimen { flex: none; font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-ligatures: contextual common-ligatures; font-feature-settings: 'calt' 1, 'liga' 1; font-size: 22px; font-weight: 400; line-height: 1.3; white-space: nowrap; color: #ABB2BF; }
-.specimen-note { font-size: 13.5px; font-weight: 300; line-height: 1.6; color: var(--mute); margin-top: 10px; display: block; }
-.list-head { margin-top: 34px; display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.list-count { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
-.list-filter { flex: 0 1 240px; background: transparent; border: none; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 15px; font-weight: 400; padding: 6px 2px; outline: none; transition: border-color .2s cubic-bezier(.4,0,.2,1); }
-.list-filter:focus { border-bottom-color: var(--accent); }
-.list { display: flex; flex-direction: column; }
-.row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 15px 12px; margin: 0 -12px; border-bottom: 1px solid var(--line); border-radius: 12px; transition: background-color .2s cubic-bezier(.4,0,.2,1); }
-.row:hover { background: var(--hover); }
-.row-main { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
-.row-title { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.row-name { font-size: 16.5px; font-weight: 500; line-height: 1.35; letter-spacing: -0.01em; }
-.row-badge { flex: none; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warn); border: 1px solid var(--warn-line); padding: 2px 8px; border-radius: 999px; }
-.row-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; color: var(--mute); }
-.row-license { font-family: 'Outfit', system-ui, sans-serif; font-size: 12px; font-weight: 500; color: var(--mute); border: 1px solid var(--line); padding: 2px 9px; border-radius: 999px; transition: color .2s cubic-bezier(.4,0,.2,1), border-color .2s cubic-bezier(.4,0,.2,1); }
-.row-license:hover { color: var(--accent); border-color: var(--accent); opacity: 1; }
-.row-end { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
-.row-download { display: flex; align-items: center; gap: 7px; border: 1px solid var(--line); color: var(--ink); font-size: 13.5px; font-weight: 500; padding: 7px 15px; border-radius: 999px; transition: color .2s cubic-bezier(.4,0,.2,1), border-color .2s cubic-bezier(.4,0,.2,1); }
-.row-download:hover { color: var(--accent); border-color: var(--accent); opacity: 1; }
-.row-chars { border: 1px solid var(--line); color: var(--mute); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; font-weight: 500; padding: 7px 13px; border-radius: 999px; transition: color .2s cubic-bezier(.4,0,.2,1), border-color .2s cubic-bezier(.4,0,.2,1); }
-.row-chars:hover { color: var(--accent); border-color: var(--accent); opacity: 1; }
-.empty { margin: 34px 0 0; text-align: center; font-size: 16px; font-weight: 300; color: var(--mute); display: none; }
-.note-card { margin-top: 44px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px 26px; display: flex; flex-direction: column; gap: 10px; }
-.note-label { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
-.note-copy { margin: 0; font-size: 15.5px; font-weight: 300; line-height: 1.7; color: var(--body); }
-.note-copy code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; color: var(--ink); background: var(--hover); padding: 2px 6px; border-radius: 5px; }
-.actions { margin-top: 52px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
-.actions-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.btn-solid { padding: 12px 24px; border-radius: 999px; background: var(--btn); color: var(--btn-ink); font-size: 15px; font-weight: 500; }
-.btn-outline { padding: 12px 24px; border-radius: 999px; border: 1px solid var(--line); font-size: 15px; font-weight: 500; }
-.btn-outline.accent { color: var(--accent); }
-@media (max-width: 900px) { .coffee-rail { display: none; } .coffee-inline { display: inline-flex; } }
-@media (max-width: 640px) { .row { grid-template-columns: 1fr !important; gap: 8px !important; } .row-end { justify-content: flex-start !important; } }
-</style>
+<link rel="preload" as="font" type="font/woff2" href="https://nhat.me/fonts/outfit.woff2?v=1" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="https://nhat.me/fonts/fira-code.woff2?v=1" crossorigin>
+<link rel="stylesheet" href="https://nhat.me/css/style.min.css?v=1">
 </head>
 <body>
-<div style="background:var(--bg); color:var(--ink); min-height:100vh; padding:0 28px">
-<a class="coffee-rail" href="https://donate.nhat.me" target="_blank" rel="noopener noreferrer" style="position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:30; flex-direction:column; align-items:center; gap:8px; padding:16px 12px; border-radius:999px; background:var(--bg); border:1px solid var(--line); box-shadow:0 6px 20px rgba(20,22,43,.10); font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent)">
-  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"></path><path d="M17 9h1.6a2.4 2.4 0 0 1 0 4.8H17"></path><path d="M7 4.5c0 .8.8 1 .8 1.8"></path><path d="M11 4c0 .9.9 1.2.9 2.1"></path></svg>
+<div class="page">
+<a class="coffee-rail" href="https://donate.nhat.me">
+  <img src="https://nhat.me/images/coffee-mug.svg" width="18" height="18" alt="">
   <span style="writing-mode:vertical-rl">Buy me a coffee</span>
 </a>
 
-<nav style="max-width:720px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 0; border-bottom:1px solid var(--line); font-size:15px; font-weight:500">
+<nav>
   <a href="https://nhat.me">About me</a>
   <a href="https://go.nhat.io">Go registry</a>
-  <a href="https://{{ host }}" style="color:var(--accent)">Ligaturized fonts</a>
+  <a href="https://{{ host }}" class="nav-active">Ligaturized fonts</a>
 </nav>
 
 <div class="wrap">
@@ -134,7 +73,7 @@ input::placeholder { color: var(--mute); opacity: 1; }
       {{#source_url}}
       <a class="btn-solid" href="{{ source_url }}" target="_blank" rel="noopener noreferrer">Repository</a>
       {{/source_url}}
-      <a class="btn-outline accent coffee-inline" href="https://donate.nhat.me" target="_blank" rel="noopener noreferrer">Buy me a coffee</a>
+      <a class="btn-outline accent coffee-inline" href="https://donate.nhat.me">Buy me a coffee</a>
     </div>
   </div>
 </div>
